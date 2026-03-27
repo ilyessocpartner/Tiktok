@@ -53,13 +53,13 @@ class BTCFeed:
         if self._running:
             logger.warning("BTCFeed is already running")
             return
-        logger.info("Starting BTCFeed WebSocket connection …")
+        logger.info("Starting BTCFeed WebSocket connection ...")
         self._running = True
         self._ws_task = asyncio.create_task(self._connect(), name="btc_feed_ws")
 
     async def stop(self) -> None:
         """Stop the WebSocket listener and clean up."""
-        logger.info("Stopping BTCFeed …")
+        logger.info("Stopping BTCFeed ...")
         self._running = False
         if self._ws_task and not self._ws_task.done():
             self._ws_task.cancel()
@@ -102,7 +102,7 @@ class BTCFeed:
                 if not self._running:
                     break
                 logger.warning(
-                    "BTCFeed WebSocket closed (%s). Reconnecting in %ds …",
+                    "BTCFeed WebSocket closed (%s). Reconnecting in %ds ...",
                     exc,
                     RECONNECT_DELAY,
                 )
@@ -110,7 +110,7 @@ class BTCFeed:
                 if not self._running:
                     break
                 logger.error(
-                    "BTCFeed unexpected error: %s. Reconnecting in %ds …",
+                    "BTCFeed unexpected error: %s. Reconnecting in %ds ...",
                     exc,
                     RECONNECT_DELAY,
                 )

@@ -133,12 +133,12 @@ class TelegramBot:
 
         text = (
             "🤖 *Polymarket Trading Bot*\n\n"
-            "Bienvenue\\! Le bot est en ligne\\.\n\n"
+            "Bienvenue! Le bot est en ligne.\n\n"
             "*Commandes disponibles :*\n"
             "/status — État de toutes les stratégies\n"
             "/balance — Solde du portefeuille\n"
-            "/stats — Statistiques P\\&L\n"
-            "/stop\\_trading — Mettre en pause toutes les stratégies\n"
+            "/stats — Statistiques P&L\n"
+            "/stop_trading — Mettre en pause toutes les stratégies\n"
             "/resume — Relancer les stratégies\n"
             "/help — Afficher l'aide\n"
         )
@@ -152,7 +152,7 @@ class TelegramBot:
         reply_markup = InlineKeyboardMarkup(keyboard)
 
         await update.message.reply_text(
-            text, parse_mode=ParseMode.MARKDOWN_V2, reply_markup=reply_markup
+            text, parse_mode=ParseMode.MARKDOWN, reply_markup=reply_markup
         )
 
     async def _cmd_help(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
@@ -217,7 +217,7 @@ class TelegramBot:
             await self._unauthorised(update)
             return
 
-        await update.message.reply_text("⏳ Arrêt de toutes les stratégies en cours…")
+        await update.message.reply_text("⏳ Arrêt de toutes les stratégies en cours...")
         errors = []
         for strat in self.strategies:
             try:
@@ -240,7 +240,7 @@ class TelegramBot:
             await self._unauthorised(update)
             return
 
-        await update.message.reply_text("⏳ Relancement des stratégies…")
+        await update.message.reply_text("⏳ Relancement des stratégies...")
         errors = []
         for strat in self.strategies:
             try:
